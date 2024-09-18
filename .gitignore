@@ -1,0 +1,8 @@
+# Evitar subir credenciales y datos sensibles
+.venv
+data/raw/
+visualizations/
+
+# Archivos innecesarios o temporales
+__pycache__/
+.ipynb_checkpoints/
