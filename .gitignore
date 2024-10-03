@@ -2,7 +2,7 @@
 .venv
 data
 data/raw/
-data/processed/
+data/processed
 visualizations/
 .env
 
@@ -10,4 +10,6 @@ visualizations/
 __pycache__/
 .ipynb_checkpoints/
 notebooks\.cache
+.cache
+credentials
 
