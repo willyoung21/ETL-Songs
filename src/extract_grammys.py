@@ -1,7 +1,7 @@
 import pandas as pd
 from db_connection import establecer_conexion, cerrar_conexion
 
-def extract_data():
+def read_db():
     # Establece la conexión usando SQLAlchemy
     engine, session = establecer_conexion()  # Ahora engine es el primero que se recibe
 
@@ -16,9 +16,9 @@ def extract_data():
     print("Datos cargados con éxito")
     print(df.head())  # Mostrar las primeras filas del DataFrame para verificar
 
-# Puedes llamar a la función `extract_data()` si deseas ejecutar el script directamente
+# Puedes llamar a la función `read_db()` si deseas ejecutar el script directamente
 if __name__ == "__main__":
-    extract_data()
+    read_db()
 
 
 

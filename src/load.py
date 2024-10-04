@@ -13,7 +13,7 @@ DB_USER = os.getenv('DB_USER')
 DB_PASS = os.getenv('DB_PASS')
 DB_NAME = os.getenv('DB_NAME')
 
-def load_data_to_db(df, table_name: str):
+def load(df, table_name: str):
     """
     Carga un DataFrame a una tabla en PostgreSQL.
 
@@ -40,4 +40,4 @@ if __name__ == "__main__":
     df_merged_cleaned = pd.read_csv(merged_csv_path)
     
     # Cargar el DataFrame a la base de datos
-    load_data_to_db(df_merged_cleaned, table_name='spotify_grammys')
+    load(df_merged_cleaned, table_name='spotify_grammys')

@@ -6,6 +6,8 @@ data/raw/
 data/processed
 visualizations/
 .env
+ETL-Songs/client_secret.json
+token.pickle
 
 # Archivos innecesarios o temporales
 __pycache__/
