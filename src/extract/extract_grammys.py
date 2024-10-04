@@ -1,36 +1,32 @@
 import pandas as pd
-from db_connection import get_db_engine
+from db_connection import establecer_conexion, cerrar_conexion
 
-def load_grammy_data() -> pd.DataFrame:
-    """
-    Carga los datos de los premios Grammy desde la base de datos en un DataFrame de pandas.
+def extract_data():
+    # Establece la conexión usando SQLAlchemy
+    engine, session = establecer_conexion()  # Ahora engine es el primero que se recibe
 
-    Returns:
-        pd.DataFrame: DataFrame con los datos de los Grammy.
-    """
-    # Obtener una conexión a la base de datos
-    engine = get_db_engine()
+    # Consulta SQL para extraer datos
+    query = "SELECT * FROM grammy_awards"  # Asegúrate de que la tabla exista
 
-    # Definir la consulta SQL
-    query = "SELECT * FROM grammy_awards;"
+    # Carga los datos en un DataFrame de pandas usando el engine de SQLAlchemy
+    df = pd.read_sql(query, con=engine)
 
-    # Ejecutar la consulta y cargar los datos en un DataFrame
-    df = pd.read_sql(query, engine)
-    
-    return df
+    # Cierra la sesión y la conexión
+    cerrar_conexion(session)
+    print("Datos cargados con éxito")
+    print(df.head())  # Mostrar las primeras filas del DataFrame para verificar
 
+# Puedes llamar a la función `extract_data()` si deseas ejecutar el script directamente
 if __name__ == "__main__":
-    try:
-        # Cargar los datos de los Grammy
-        df_grammy = load_grammy_data()
+    extract_data()
 
-        # Configurar pandas para mostrar más filas y columnas si es necesario (opcional)
-        pd.set_option('display.max_rows', 100)
-        pd.set_option('display.max_columns', None)
-        pd.set_option('display.width', None)
 
-        # Mostrar las primeras 5 filas del DataFrame para verificar
-        print(df_grammy.head(5))
-    
-    except Exception as e:
-        print(f"Error al cargar los datos: {e}")
+
+
+
+
+
+
+
+
+

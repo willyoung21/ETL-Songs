@@ -1,5 +1,6 @@
 # Evitar subir credenciales y datos sensibles
 .venv
+venv
 data
 data/raw/
 data/processed

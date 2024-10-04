@@ -6,17 +6,19 @@ from dotenv import load_dotenv
 import sys
 import numpy as np
 import time
-
 sys.path.append(os.path.join(os.path.dirname(__file__), '../extract'))
-from db_connection import get_db_engine
+from db_connection import establecer_conexion, cerrar_conexion
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
 
 # Conectar a la base de datos y cargar los datos
-engine = get_db_engine()
+engine, session = establecer_conexion()  # Cambiado para usar la nueva función de conexión
 query = "SELECT * FROM grammy_awards;"
 df = pd.read_sql(query, engine)
+
+# Cerrar la conexión a la base de datos
+cerrar_conexion(session)
 
 # Eliminar columnas innecesarias
 columns_to_drop = ['img', 'updated_at', 'published_at']
@@ -107,7 +109,7 @@ def add_spotify_ids(df):
             print(f"Progreso de obtención de Spotify IDs: {i + 1}/{total_rows} filas completadas")
         
         # Pausa corta para evitar posibles problemas de límites de la API
-        time.sleep(0.1)
+        time.sleep(5)
     
     return df
 
